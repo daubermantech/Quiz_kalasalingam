@@ -19,7 +19,7 @@ body{
     background-color: white;
     border-radius: 25px;
     position: relative;
-    z-index: -2;
+    z-index: 1;
 }
 /* .right_container{
     position: absolute;
@@ -73,11 +73,7 @@ body{
     vertical-align: middle;
 }
 
-.form{
-    position: absolute;
-    left: 70px;
-    top: 44%;
-}
+
 .Email{
     width: 350px;
     padding: 6px;
@@ -85,6 +81,9 @@ body{
     border: none;
 
 
+}
+input::placeholder{
+    color: black;
 }
 
 .Forgot{
@@ -94,4 +93,41 @@ body{
     font-family: "poppins";
     font-size: 14px;
     
+}
+.Forgot:hover{
+    color: black;
+
+}
+.password{
+    width: 350px;
+        padding: 6px;
+        background-color: rgba(192, 219, 234, 1);
+        border: none;
+    }
+.form{
+    position: absolute;
+        left: 71px;
+        top: 42%;
+
+}
+.button_login{
+    position: absolute;
+    left: 35%;
+    padding: 10px;
+    width:120px;
+    color: white;
+    border-radius:25px ;
+    border: none;
+    background-color: rgba(216, 133, 163, 1);
+}
+.button_login:hover{
+    border: 1px solid rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.third{
+    font-family: "commissioner";
+    font-size:18px;
+    font-weight: 100;
+    margin-left: 42px;
 }
