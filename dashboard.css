@@ -1,0 +1,216 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header_section{
+    display: flex;
+    min-height: 12vh;
+    background-color:#00F0FF;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.header h3{
+    color: #A40D5C;
+    font-family: "outfit";
+    font-size: 28px;
+    font-weight:bolder;
+}
+.header_logo{
+    position: absolute;
+    left: 87%;
+    display: flex;
+    gap:6px;
+    vertical-align: middle;
+}
+.fa-bell{
+    vertical-align: middle;
+        font-size: 34px;
+        margin-right: 50px;
+}
+.fa-bell:hover{
+    cursor: pointer;
+    
+}
+.logout_button{
+    background-color: #5A57FF;
+    color: #FFFFFF;
+    border: none;
+    padding: 6px;
+    vertical-align: middle;
+    border-radius: 10px;
+    font-size: 20px;
+    
+}
+.logout_button:hover{
+    cursor: pointer;
+    border: 1px solid black;
+    box-shadow: rgba(98, 94, 94, 0.3) 0px 19px 38px, rgba(98, 94, 94, 0.2) 0px 15px 12px;
+}
+
+.center_part {
+    display: flex; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    margin-top: 20px; 
+    width: 20%;/* Add some space between the header and the links */
+    height: 100vh;
+    background-color: #9328FF;
+    border-radius:0px 40px 40px 0px ;
+    position: absolute;
+    top: -20px;
+}
+.body_heading{
+    position: absolute;
+    top:14%;
+    left:130% ;
+    font-size: 32px;
+}
+.Links {
+    display: flex;
+    flex-direction: column;
+    gap: 3px; 
+    position: absolute;/* Add some space between each link */
+    top: 20px;
+    left: 10px;
+    /* align-items: center; Center the links horizontally */
+}
+.Links img {
+    border-radius: 16px;
+    margin-bottom: 30px;
+}
+
+.Links a:hover {
+    color: black;
+}
+
+.Links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: "outfit";
+    font-size: 20px;
+    transition: color 0.3s;
+    margin: 20px;
+}
+.cards{
+    display: flex;
+    position: absolute;
+    gap: 200px;
+    left: 52%;
+    top: 23%;
+}
+.cards1{
+    width: 280px;
+        height: 180px;
+        padding: 20px;
+        border-radius: 40px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        position: relative;
+}
+
+.cards1 img{
+position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+
+.cards1 h3{
+    font-size: 18px;
+    font-family: "poppins";
+    position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+            color: black;
+}
+.cards2 {
+    width: 280px;
+        height: 180px;
+    padding: 20px;
+    border-radius: 40px;
+
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    position: relative;
+
+}
+.cards2 img{
+    position: absolute;
+        top: 37%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+}
+.cards2 h3{
+    font-size: 18px;
+        font-family: "poppins";
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+            color: black;
+
+}
+.card1{
+display: flex;
+    position: absolute;
+    gap: 200px;
+    left: 130%;
+    top: 63%;
+
+}
+.cards3{
+    width: 280px;
+        height: 180px;
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    position: relative;
+}
+.cards3 img{
+    position: absolute;
+        top: 37%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+}
+.cards3 h3{
+    font-size: 18px;
+        font-family: "poppins";
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+            color: black;
+
+}
+.cards4{
+width: 280px;
+    height: 180px;
+        padding: 20px;
+        border-radius: 40px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        position: relative;
+
+}
+.cards4 img{
+    position: absolute;
+        top: 37%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+}
+.cards4 h3{
+    font-size: 18px;
+        font-family: "poppins";
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+            color: black;
+
+}
