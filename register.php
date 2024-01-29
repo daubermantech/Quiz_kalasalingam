@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $checkStmt->execute();
         $result = $checkStmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($result) {
+        if ($result['email'] == $email) {
             echo "<script>alert('Email is already Registered'); window.location.href='index.html';</script>";
         } else {
             // Insert the new registration if the email doesn't exist
@@ -42,22 +42,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->addAddress($email); // Change this line to use the correct variable
                 $mail->Subject = "Account Activation";
                 $mail->Body = <<<END
-
                 Click <a href="http://localhost/vijay/activate-account.php?token=$activation_token">here</a> 
                 to activate your account.
-
                 END;
 
                 try {
-
                     $mail->send();
+                    header("Location: signup success.html");
                 } catch (Exception $e) {
-
                     echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
                     exit;
                 }
-
-                header("Location: signup success.html");
             } else {
                 echo "error|Error: Unable to execute the SQL statement.";
             }

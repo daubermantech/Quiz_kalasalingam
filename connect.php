@@ -23,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             session_start();
             $_SESSION['user_email'] = $email;
-            header("Location:dashboard.html");
+            header("Location:dashboard.php");
             // You can redirect the user to another page or perform further actions here
         } else {
-            echo "<script>alert('Login failed. Invalid email, password, or account not activated.'); window.location.href='login.html';</script>";
+            echo "<script>alert('Login failed. Invalid email or password'); window.location.href='login.html';</script>";
         }
 
         $stmt->close();
