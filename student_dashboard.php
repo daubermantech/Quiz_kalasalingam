@@ -4,7 +4,7 @@ session_start();
 // Check if the user is not logged in
 if (!isset($_SESSION['user_email'])) {
     // Redirect to the login page
-    header("Location: login.html");
+    header("Location: student_login.html");
     exit();
 }
 ?>
@@ -98,7 +98,7 @@ if (!isset($_SESSION['user_email'])) {
 
                     // You can perform additional actions after logout if needed
                     // For example, redirect to the login page
-                    window.location.href = 'login.html';
+                    window.location.href = 'student_login.html';
                 })
                 .catch(error => console.error('Error:', error));
         });

@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die('Connection Failed: ' . $conn->connect_error);
     } else {
         // Prepare and execute a query to get the hashed password for the given email
-        $stmt = $conn->prepare("SELECT email, password FROM registration WHERE email = ?");
+        $stmt = $conn->prepare("SELECT email, password FROM student_db WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -28,20 +28,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Password is correct (hashed), set session variables or perform other actions
                 session_start();
                 $_SESSION['user_email'] = $user['email'];
-                header("Location: dashboard.php"); // Redirect to the dashboard page
+                header("Location: student_dashboard.php"); // Redirect to the dashboard page
                 exit();
             } elseif ($password === $user['password']) {
                 // Password is correct (default plain text), set session variables or perform other actions
                 session_start();
                 $_SESSION['user_email'] = $user['email'];
-                header("Location: dashboard.php"); // Redirect to the dashboard page
+                header("Location: student_dashboard.php"); // Redirect to the dashboard page
                 exit();
             } else {
                 // Password is incorrect
-                echo "<script>alert('Login failed. Invalid email or password.'); window.location.href='login.html';</script>";
+                echo "<script>alert('Login failed. Invalid email or password.'); window.location.href='student_login.html';</script>";
             }
         } else {
-            echo "<script>alert('Login failed. Invalid email or password.'); window.location.href='login.html';</script>";
+            echo "<script>alert('Login failed. Invalid email or password.'); window.location.href='student_login.html';</script>";
         }
 
         $stmt->close();

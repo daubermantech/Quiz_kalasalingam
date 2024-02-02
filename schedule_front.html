@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Scheduler (Staff)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .message {
+            margin-top: 10px;
+            font-weight: bold;
+            color: green;
+        }
+
+        .error-message {
+            margin-top: 10px;
+            font-weight: bold;
+            color: red;
+        }
+
+        #codeContainer {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #codeDisplay {
+            font-size: 18px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        #copyButton {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz Scheduler (Staff)</h1>
+
+    <!-- Quiz Scheduling Form -->
+    <form id="quizForm">
+        <label for="title">Quiz Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="quiz_date">Quiz Date:</label>
+        <input type="date" id="quiz_date" name="quiz_date" required>
+
+        <label for="start_time">Start Time:</label>
+        <input type="time" id="start_time" name="start_time" required>
+
+        <label for="end_time">End Time:</label>
+        <input type="time" id="end_time" name="end_time" required>
+
+        <button type="button" onclick="scheduleQuiz()">Schedule Quiz</button>
+        <div id="quizMessage" class="message"></div>
+    </form>
+
+    <!-- Code Display Container -->
+    <div id="codeContainer">
+        <label for="codeDisplay">Generated Code:</label>
+        <div id="codeDisplay"></div>
+        <span id="copyButton" onclick="copyCodeToClipboard()">📋</span>
+    </div>
+
+    <script>
+        async function scheduleQuiz() {
+            const form = document.getElementById('quizForm');
+            
+            // Check if all required fields are filled before proceeding
+            if (form.checkValidity()) {
+                const currentDate = new Date();
+                const selectedDate = new Date(document.getElementById('quiz_date').value + 'T' + document.getElementById('start_time').value);
+
+                // Check if the selected date and time are not in the past
+                if (selectedDate < currentDate) {
+                    displayMessage('quizMessage', 'Invalid date or time. Please select a future date and time.', false);
+                    return;
+                }
+
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch('backend_schedule_quiz.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const result = await response.json();
+
+                    // Display the result message
+                    displayMessage('quizMessage', result.message, result.success);
+
+                    // If success, display the generated code
+                    if (result.success) {
+                        const codeContainer = document.getElementById('codeContainer');
+                        const codeDisplay = document.getElementById('codeDisplay');
+
+                        codeDisplay.textContent = result.code;
+                        codeContainer.style.display = 'block';
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            } else {
+                // If not all required fields are filled, trigger validation messages
+                form.reportValidity();
+            }
+        }
+
+        function displayMessage(elementId, message, success) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = message;
+            element.style.color = success ? 'green' : 'red';
+        }
+
+        function copyCodeToClipboard() {
+            const codeDisplay = document.getElementById('codeDisplay');
+            const codeText = codeDisplay.textContent;
+
+            // Create a temporary textarea to copy the text to clipboard
+            const textarea = document.createElement('textarea');
+            textarea.value = codeText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            // Show a popup message
+            alert('Code copied successfully!');
+        }
+    </script>
+</body>
+</html>

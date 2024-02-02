@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <h1>CSV File Content</h1>
+    <h1>Preview</h1>
 
     <?php
     // Check if the file_path parameter is set in the URL
@@ -49,16 +49,52 @@
         // Parse the CSV data
         $csv_rows = array_map('str_getcsv', explode("\n", $csv_content));
 
-        // Display the data in a table
-        echo '<table>';
-        foreach ($csv_rows as $row) {
-            echo '<tr>';
-            foreach ($row as $cell) {
-                echo '<td>' . htmlspecialchars($cell) . '</td>';
+        // Extract headers
+        $headers = array_shift($csv_rows);
+
+        // Display the data
+        foreach ($csv_rows as $rowIndex => $row) {
+            // Skip rows without enough columns (e.g., the extra row)
+            if (count($row) < count($headers)) {
+                continue;
             }
-            echo '</tr>';
+
+            echo '<h2>Question ' . ($rowIndex + 1) . '</h2>';
+            foreach ($row as $cellIndex => $cell) {
+                $header = $headers[$cellIndex];
+                switch ($header) {
+                    case 'Question':
+                        echo '<p>' . htmlspecialchars($cell) . '</p>';
+                        break;
+                    case 'type':
+                        if (strtoupper($cell) === 'MULTIPLE') {
+                            echo '<div class="options">';
+                            // Display options as checkboxes for multiple-choice questions
+                            $options = explode(",", $row[$cellIndex + 1]);
+                            foreach ($options as $optionIndex => $option) {
+                                echo '<label><input type="checkbox" name="question_' . ($rowIndex + 1) . '[]" value="' . htmlspecialchars($option) . '">' . htmlspecialchars($option) . '</label><br>';
+                            }
+                            echo '</div>';
+                        } elseif (strtoupper($cell) === 'SINGLE') {
+                            echo '<div class="options">';
+                            // Display options as radio buttons for single-choice questions
+                            $options = explode(",", $row[$cellIndex + 1]);
+                            foreach ($options as $optionIndex => $option) {
+                                echo '<label><input type="radio" name="question_' . ($rowIndex + 1) . '" value="' . htmlspecialchars($option) . '">' . htmlspecialchars($option) . '</label><br>';
+                            }
+                            echo '</div>';
+                        } elseif (strtoupper($cell) === 'TRUEFALSE') {
+                            // Display radio buttons for True/False questions
+                            echo '<label><input type="radio" name="question_' . ($rowIndex + 1) . '" value="True">True</label>';
+                            echo '<label><input type="radio" name="question_' . ($rowIndex + 1) . '" value="False">False</label><br>';
+                        } else {
+                            // Handle other types here
+                            echo '<p>' . htmlspecialchars($cell) . '</p>';
+                        }
+                        break;
+                }
+            }
         }
-        echo '</table>';
     } else {
         echo '<p>No file path provided.</p>';
     }

@@ -11,7 +11,7 @@ require 'PHPMailer-master\src\SMTP.php';
 $mail = new PHPMailer(true);
 
 // Uncomment the line below if you want to enable SMTP debugging
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+// $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
 $mail->isSMTP();
 $mail->SMTPAuth = true;

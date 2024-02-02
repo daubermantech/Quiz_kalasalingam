@@ -19,4 +19,8 @@ if (isset($_POST['logout'])) {
     // Send a response indicating successful logout
     echo 'Logout successful';
     exit();
+} else {
+    // If 'logout' is not set, redirect to the login page
+    header("Location: login.html");
+    exit();
 }

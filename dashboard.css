@@ -94,10 +94,10 @@
     margin: 20px;
 }
 .cards{
-    display: flex;
+   display: flex;
     position: absolute;
     gap: 200px;
-    left: 52%;
+    left: 130%;
     top: 23%;
 }
 .cards1{
